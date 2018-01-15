@@ -8,6 +8,10 @@ class SongList extends Component {
     }
 
     renderSongs() {
+        if(this.props.data.error != undefined) {
+            return <div>an error occured, try reloading</div>
+        }
+
         return this.props.data.songs.map((song, i) => {
             return (
                 <li key={i} data-key={i} className="collection-item">
