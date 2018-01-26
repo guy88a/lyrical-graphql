@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
+import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
+import { Link, hashHistory } from 'react-router';
 
 class CreateSong extends Component {
 
@@ -11,11 +13,24 @@ class CreateSong extends Component {
         }
     }
 
+    onSubmit(event) {
+        event.preventDefault();
+
+        this.props.mutate({
+            variables: {
+                title: this.state.title
+            }
+        }).then(() => hashHistory.push('/'));
+    }
+
     render() {
         return (
             <div>
+                <Link to="/">
+                    Back
+                </Link>
                 <h3>Create a New Song</h3>
-                <form>
+                <form onSubmit={ this.onSubmit.bind(this) }>
                     <label>Song Title</label>
                     <input onChange={ event => this.setState({title: event.target.value}) } value={this.state.title} />
                 </form>
@@ -26,12 +41,11 @@ class CreateSong extends Component {
 }
 
 const mutation = gql`
-    mutation {
-        addSong(title: ) {
-            id
+    mutation AddSong($title: String) {
+        addSong(title: $title) {
             title
         }
     }
 `;
 
-export default CreateSong;
+export default graphql(mutation)(CreateSong);
