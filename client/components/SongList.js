@@ -49,4 +49,6 @@ class SongList extends Component {
     }
 }
 
-export default graphql(queryFetchSong)(SongList);
+export default graphql(queryDeleteSong) (
+    graphql(queryFetchSong)(SongList)
+);
