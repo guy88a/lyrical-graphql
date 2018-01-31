@@ -10,15 +10,22 @@ class SongList extends Component {
         return this.props.data.loading;
     }
 
+    onSongDelete(id) {
+        this.props.mutate({
+            variables: { id }
+        });
+    }
+
     renderSongs() {
         if(this.props.data.error != undefined) {
             return <div>an error occured, try reloading</div>
         }
 
-        return this.props.data.songs.map(song => {
+        return this.props.data.songs.map(({ id, title }) => {
             return (
-                <li key={song.id} className="collection-item">
-                    { song.title }
+                <li key={id} className="collection-item">
+                    { title }
+                    <i className="material-icons" onClick={() => this.onSongDelete(id)}>delete</i>
                 </li>
             );
         });
