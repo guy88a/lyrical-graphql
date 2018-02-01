@@ -1,0 +1,12 @@
+.collection-item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.collection-item:hover {
+    background-color: #e2e2e2;
+}
+
+.collection-item > i {
+    cursor: pointer;
+}
