@@ -1,12 +1,26 @@
 .collection-item {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .collection-item:hover {
-    background-color: #e2e2e2;
+  background-color: #e2e2e2;
 }
 
 .collection-item > i {
-    cursor: pointer;
+  cursor: pointer;
+}
+
+.material-icons {
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.vote-box {
+  display: flex;
+  align-items: center;
+}
+
+#daasdasasd {
+  width: 50px;
 }

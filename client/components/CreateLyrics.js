@@ -21,8 +21,7 @@ class CreateLyrics extends Component {
         variables: {
           content: this.state.content,
           songId: this.props.songId
-        },
-        refetchQueries: [{ query: queryFetchSongs }]
+        }
       })
       .then(() => this.setState({ content: "" }));
   }
