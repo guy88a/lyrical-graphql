@@ -23,7 +23,13 @@ class CreateLyrics extends Component {
           songId: this.props.songId
         }
       })
-      .then(() => this.setState({ content: "" }));
+      .then(() => {
+        this.setState({ content: "" });
+      });
+  }
+
+  onChangeHandler(event) {
+    this.setState({ content: event.target.value });
   }
 
   render() {
@@ -31,7 +37,7 @@ class CreateLyrics extends Component {
       <form onSubmit={this.onSubmitHandler.bind(this)}>
         <label>Add a Lyric</label>
         <input
-          onChange={event => this.setState({ content: event.target.value })}
+          onChange={this.onChangeHandler.bind(this)}
           value={this.state.content}
         />
       </form>
@@ -46,6 +52,7 @@ const mutation = gql`
       lyrics {
         id
         content
+        likes
       }
     }
   }

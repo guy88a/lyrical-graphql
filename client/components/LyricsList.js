@@ -8,9 +8,17 @@ class LyricsList extends Component {
     super(props);
   }
 
-  onLike(id) {
+  onLike(id, likes) {
     this.props.mutate({
-      variables: { id }
+      variables: { id },
+      optimisticResponse: {
+        __typename: "Mutation",
+        likeLyric: {
+          id,
+          __typename: "LyricType",
+          likes: likes + 1
+        }
+      }
     });
   }
 
@@ -20,7 +28,10 @@ class LyricsList extends Component {
         <li key={id} className="collection-item">
           {content}
           <div className="vote-box">
-            <i className="material-icons" onClick={() => this.onLike(id)}>
+            <i
+              className="material-icons"
+              onClick={() => this.onLike(id, likes)}
+            >
               thumb_up
             </i>
             {likes}
